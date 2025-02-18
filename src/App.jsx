@@ -13,25 +13,49 @@ import ForgitPassword from './Component/ForgitPassword/ForgitPassword';
 import AuthContextProvider from './Context/AuthContextProvider';
 import ProtectedRouting from './Component/ProtectedRouting/ProtectedRouting';
 import UpdatePassword from './Component/UpdatePassword/UpdatePassword';
+import ProductDetails from './Component/ProductDetails/ProductDetails';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from './../node_modules/@tanstack/react-query-devtools/src/production';
+import CartContextProvider from './Context/CartContextProvider';
+import ShippingDetails from './Component/ShippingDetails/ShippingDetails';
+import AllOrders from './Component/AllOrders/AllOrders';
+import WishContextProvider from './Context/WishContextProvider';
+import WishList from './Component/WishList/wishList';
+
+
+
 
 
 export default function App() {
+  let client = new QueryClient();
   let router = createBrowserRouter([{path:'',element:<Layout/>,errorElement:<Notfound/>,children:[
     {index:true ,element:<ProtectedRouting><Home/></ProtectedRouting>},
     {path:'product' ,element:<ProtectedRouting><Product/></ProtectedRouting>},
     {path:'cart' ,element:<ProtectedRouting><Cart/></ProtectedRouting>},
+    {path:'wishList' ,element:<ProtectedRouting><WishList/></ProtectedRouting>},
     {path:'login' ,element:<Login/>},
     {path:'register' ,element:<Signup/>},
     {path:'brand' ,element:<ProtectedRouting><Brand/></ProtectedRouting>},
     {path:'category' ,element:<ProtectedRouting><Category/></ProtectedRouting>},
+    {path:'ProductDetails/:id' ,element:<ProtectedRouting><ProductDetails/></ProtectedRouting>},
+    {path:'ShippingDetails/:id' ,element:<ProtectedRouting><ShippingDetails/></ProtectedRouting>},
+    {path:'allorders' ,element:<ProtectedRouting><AllOrders/></ProtectedRouting>},
     {path:'ForgitPassword',element:<ForgitPassword/>} ,
     {path:'UpdatePassword',element:<UpdatePassword/>},
   ]}])
   return (
     <>
+    <QueryClientProvider client={client}>
+      <ReactQueryDevtools></ReactQueryDevtools>
     <AuthContextProvider>
-    <RouterProvider router={router} ></RouterProvider>
+      <CartContextProvider
+      ><WishContextProvider>
+      <RouterProvider router={router} ></RouterProvider>
+      </WishContextProvider>
+      </CartContextProvider>
     </AuthContextProvider>
+    </QueryClientProvider>
+    
     
     </>
   )

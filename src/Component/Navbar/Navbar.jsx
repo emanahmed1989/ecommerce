@@ -2,10 +2,14 @@ import React, { useContext } from 'react'
 import { Link ,NavLink, useNavigate} from 'react-router-dom'
 import logoImg from '../../assets/images/freshcart-logo.svg'
 import { AuthContext } from '../../Context/AuthContextProvider'
+import { cartContext } from '../../Context/CartContextProvider';
+import { wishContext } from '../../Context/WishContextProvider';
 
 export default function Navbar() {
   let navg = useNavigate();
   let {token,setToken} =useContext(AuthContext)
+  let{cartProducsNumber}=useContext(cartContext);
+  let{wishItemsNumber}=useContext(wishContext)
   function logout(){
     localStorage.removeItem("userData");
     setToken(null);
@@ -37,14 +41,19 @@ export default function Navbar() {
           <NavLink to="/product" className={(x)=>x.isActive?'block py-2 px-3 text-active':'block py-2 px-3 '} aria-current="page">Products</NavLink>
         </li>
         <li>
-          <NavLink to="/cart" className={(x)=>x.isActive?'block py-2 px-3 text-active':'block py-2 px-3 '} aria-current="page">Cart</NavLink>
+          <NavLink to="/category" className={(x)=>x.isActive?'block py-2 px-3 text-active':'block py-2 px-3 '}aria-current="page">Category</NavLink>
         </li>
         <li>
           <NavLink to="/brand" className={(x)=>x.isActive?'block py-2 px-3 text-active':'block py-2 px-3 '} aria-current="page">brands</NavLink>
         </li>
         <li>
-          <NavLink to="/category" className={(x)=>x.isActive?'block py-2 px-3 text-active':'block py-2 px-3 '}aria-current="page">Category</NavLink>
+          <NavLink to="/cart" className={(x)=>x.isActive?'block py-2 px-3 text-active':'block py-2 px-3 '} aria-current="page">Cart</NavLink>
         </li>
+        <li>
+          <NavLink to="/wishList" className={(x)=>x.isActive?'block py-2 px-3 text-active':'block py-2 px-3 '} aria-current="page">wishList</NavLink>
+        </li>
+        
+       
         
       </ul>):('')}
    
@@ -63,9 +72,21 @@ export default function Navbar() {
         </li>
       </ul>
       <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row  rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        {token?(<li onClick={logout}>
+        {token?(
+          <>
+          <li className=' text-main py-2 px-3 relative'>
+        <i className='fa-solid fa-cart-shopping'> </i>
+        <span className='absolute -translate-y-3'>{cartProducsNumber}</span>
+        </li>
+          <li className=' text-red-600 py-2 px-3 relative'>
+          <i className="fa-solid fa-heart"></i>
+        <span className='absolute -translate-y-3'>{wishItemsNumber}</span>
+        </li>
+          <li onClick={logout}>
         <Link className='block py-2 px-3 '>Logout</Link>
-        </li>):(<><li>
+        </li>
+        </>
+          ):(<><li>
           <NavLink to="/register" className={(x)=>x.isActive?'block py-2 px-3 text-active':'block py-2 px-3 '} aria-current="page">SignUp</NavLink>
         </li>
         <li>
