@@ -20,7 +20,7 @@ import CartContextProvider from './Context/CartContextProvider';
 import ShippingDetails from './Component/ShippingDetails/ShippingDetails';
 import AllOrders from './Component/AllOrders/AllOrders';
 import WishContextProvider from './Context/WishContextProvider';
-import WishList from './Component/WishList/wishList';
+import WishList from './Component/WishList/WishList';
 
 
 
