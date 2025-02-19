@@ -13,7 +13,7 @@ export default function Product() {
   let [Page,setPage]=useState('1');
   let {addUserCart,setCartNumber} = useContext(cartContext)
    let{addWishItems,wishItemsNumber, setwishItemsNumber, getWishItems}=useContext(wishContext)
-  //  let [wishItems,setWishItems]=useState(null);
+    let [wishItems,setWishItems]=useState(null);
   //  useEffect(()=>{
   //   let wishlistitems = JSON.parse(localStorage.getItem("wishList"));
   //   if(wishlistitems){

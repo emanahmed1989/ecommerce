@@ -24,6 +24,7 @@ body{
     p-2 bg-main text-white hover:bg-green-600 w-full rounded
 }
 
+
 .loader {
     width: 64px;
     height: 48px;

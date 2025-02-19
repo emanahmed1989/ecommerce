@@ -21,6 +21,7 @@ import ShippingDetails from './Component/ShippingDetails/ShippingDetails';
 import AllOrders from './Component/AllOrders/AllOrders';
 import WishContextProvider from './Context/WishContextProvider';
 import WishList from './Component/WishList/WishList';
+import OrderDetails from './Component/OrderDetails/OrderDetails';
 
 
 
@@ -40,6 +41,7 @@ export default function App() {
     {path:'ProductDetails/:id' ,element:<ProtectedRouting><ProductDetails/></ProtectedRouting>},
     {path:'ShippingDetails/:id' ,element:<ProtectedRouting><ShippingDetails/></ProtectedRouting>},
     {path:'allorders' ,element:<ProtectedRouting><AllOrders/></ProtectedRouting>},
+    {path:'OrderDetails/:id' ,element:<ProtectedRouting><OrderDetails/></ProtectedRouting>},
     {path:'ForgitPassword',element:<ForgitPassword/>} ,
     {path:'UpdatePassword',element:<UpdatePassword/>},
   ]}])
