@@ -23,8 +23,6 @@ export default function AllOrders() {
     queryKey:['allOrders'],
     queryFn:getallOrders
     });
-console.log(data.data);
-
     function openOrder(id,order){
       localStorage.setItem('order',JSON.stringify(order))
       navg(`/OrderDetails/${id}`)
